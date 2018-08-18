@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ListOfUsers {
     private static final String DEFAULT_NUMBER = "0";
-    public static List<User> getUserFromFile(String pathFile) {
+    public static List<User> getUsersFromFile(String pathFile) {
         List<User> users = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
         try {

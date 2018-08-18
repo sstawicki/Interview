@@ -13,14 +13,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
@@ -31,6 +23,6 @@ public class User {
 
     @Override
     public String toString() {
-        return  firstName + " " + lastName + " phone: " + phoneNumber;
+        return  firstName + " " + lastName + " " + phoneNumber;
     }
 }
