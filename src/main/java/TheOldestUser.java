@@ -3,18 +3,14 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TheOldestUser {
 
     public static int findTheOldestUser(List<User> users) {
-        List<User> usersWithNumber = new ArrayList<>();
-        for (User user : users) {
-            if (user.getPhoneNumber().equals("0")) {
-                continue;
-            } else {
-                usersWithNumber.add(user);
-            }
-        }
+        List<User> usersWithNumber = users.stream()
+                .filter(u -> !u.getPhoneNumber().equals("0"))
+                .collect(Collectors.toList());
         if (usersWithNumber.size() == 0) {
             Collections.sort(users, new SortByBirthDay());
             User theOldestUserWithoutPhone = users.get(0);

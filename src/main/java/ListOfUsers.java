@@ -13,8 +13,7 @@ public class ListOfUsers {
     public static List<User> getUsersFromFile(String pathFile) {
         List<User> users = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(pathFile));
+        try (BufferedReader reader = new BufferedReader(new FileReader(pathFile))){
             String line = null;
             while ((line = reader.readLine()) != null) {
                 String date[] = line.split(",");
