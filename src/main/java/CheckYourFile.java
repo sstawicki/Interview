@@ -1,17 +1,15 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
+
 import java.util.stream.Collectors;
 
 public class CheckYourFile {
-    private CheckFirstName checkFirstName = new CheckFirstName();
-    private CheckLastName checkLastName = new CheckLastName();
-    private CheckDateOfBirth checkDateOfBirth = new CheckDateOfBirth();
+    private  CheckFirstName checkFirstName = new CheckFirstName();
+    private  CheckLastName checkLastName = new CheckLastName();
+    private  CheckDateOfBirth checkDateOfBirth = new CheckDateOfBirth();
     private CheckPhoneNumber checkPhoneNumber = new CheckPhoneNumber();
 
     public boolean checkFile(String pathFile) {
