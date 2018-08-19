@@ -11,7 +11,7 @@ public class TheOldestUser {
         List<User> usersWithNumber = users.stream()
                 .filter(u -> !u.getPhoneNumber().equals("0"))
                 .collect(Collectors.toList());
-        if (usersWithNumber.size() == 0) {
+        if (usersWithNumber.isEmpty()) {
             Collections.sort(users, new SortByBirthDay());
             User theOldestUserWithoutPhone = users.get(0);
             int age = Period.between(theOldestUserWithoutPhone.getDateOfBirth(), LocalDate.now()).getYears();

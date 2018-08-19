@@ -27,11 +27,12 @@ public class CheckYourFileTestSuite {
     @Test
     public void wrongFirstName() {
         //Given
+        CheckFirstName check = new CheckFirstName();
         List<String> list = new ArrayList<>();
         list.add("w1,Kowalski,1998-02-12,876453211");
         list.add("Jan,Maci,1928-02-12,900500600");
         //When
-        boolean result = CheckYourFile.checkFirstName(list);
+        boolean result = check.checkFirstName(list);
         //Then
         Assert.assertEquals(false, result);
     }
@@ -39,11 +40,12 @@ public class CheckYourFileTestSuite {
     @Test
     public void wrongLastName() {
         //Given
+        CheckLastName checkLastName = new CheckLastName();
         List<String> list = new ArrayList<>();
         list.add("Jan,Kowalski,1998-02-12,876453211");
         list.add("Anna,2,2000-04-12,567890234");
         //When
-        boolean result = CheckYourFile.checkLastName(list);
+        boolean result = checkLastName.checkLastName(list);
         //Then
         Assert.assertEquals(false, result);
     }
@@ -51,11 +53,25 @@ public class CheckYourFileTestSuite {
     @Test
     public void wrongBirthDay() {
         //Given
+        CheckDateOfBirth checkDateOfBirth = new CheckDateOfBirth();
         List<String> list = new ArrayList<>();
         list.add("Jan,Kowalski,w-02-12,876453211");
         list.add("Jan,Maci,1928-02-12,900500600");
         //When
-        boolean result = CheckYourFile.checkDateOfBrth(list);
+        boolean result = checkDateOfBirth.checkDateOfBrth(list);
+        //Then
+        Assert.assertEquals(false, result);
+    }
+
+    @Test
+    public void wrongBirthDayInFuture() {
+        //Given
+        CheckDateOfBirth checkDateOfBirth = new CheckDateOfBirth();
+        List<String> list = new ArrayList<>();
+        list.add("Jan,Kowalski,2020-02-12,876453211");
+        list.add("Jan,Maci,1928-02-12,900500600");
+        //When
+        boolean result = checkDateOfBirth.checkDateOfBrth(list);
         //Then
         Assert.assertEquals(false, result);
     }
@@ -63,11 +79,12 @@ public class CheckYourFileTestSuite {
     @Test
     public void wrongPhone() {
         //Given
+        CheckPhoneNumber checkPhoneNumber = new CheckPhoneNumber();
         List<String> list = new ArrayList<>();
-        list.add("Adrian,Kowalski,1998-02-12,aaa");
+        list.add("Adrian,Kowalski,1998-02-12,432211aaa");
         list.add("Jan,Maci,1928-02-12,900500600");
         //When
-        boolean result = CheckYourFile.checkPhoneNumber(list);
+        boolean result = checkPhoneNumber.checkPhoneNumber(list);
         //Then
         Assert.assertEquals(false, result);
     }
@@ -89,8 +106,9 @@ public class CheckYourFileTestSuite {
         //Given
         ClassLoader classLoader = getClass().getClassLoader();
         String file = (classLoader.getResource("users.txt").getPath());
+        CheckYourFile checkYourFile = new CheckYourFile();
         //When
-        boolean result = CheckYourFile.checkAll(file);
+        boolean result = checkYourFile.checkFile(file);
         //Then
         Assert.assertEquals(true, result);
     }
